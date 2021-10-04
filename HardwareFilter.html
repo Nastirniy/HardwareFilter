@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Фільтрація ПК</title>
+</head>
+<body>
+<script>
+let hardware = {
+CPU: "Intel/Amd"
+}
+let CPU = {
+Intel: "1200/1151/2066",
+Amd: "TR4/AM4"
+GenOfCPU: "r3/r5/r7/i3/i5/i7"
+}
+hardware.CPU = prompt ("Intel/Amd");
+hardware.CPU == "Intel"
+if(hardware.CPU == "Intel") {
+	CPU.Intel = prompt("1200/1151/2066");
+    	if (CPU.Intel == "1200") {alert("")}
+		else if (CPU.Intel == "1151") {alert("")}
+		else if (CPU.Intel == "2066") {alert("")}
+}
+if(hardware.CPU == "Amd") {
+	CPU.Amd = prompt("TR4/AM4");
+    	if (CPU.Amd == "TR4") {}
+		else if (CPU.Amd == "AM4") {alert("")}
+		
+}
+</script>
+</body>
+</html>
