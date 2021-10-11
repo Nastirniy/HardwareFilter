@@ -22,17 +22,17 @@ let AMDCPU = {
 TR4: "AMD Ryzen Threadripper 1900X / AMD Ryzen Threadripper 3000 3960X / AMD Ryzen Threadripper 2 2970WX",
 AM4: "AMD Ryzen 9 5900X / AMD Ryzen 7 5800X / AMD Ryzen 7 5700G",
 }
-hardware.CPU = prompt (hardware.CPU);
-if(hardware.CPU == "Intel") {
+hardware.CPU = prompt (hardware.CPU).toLowerCase();
+if(hardware.CPU == "intel") {
 	CPU.Intel = prompt(CPU.Intel);
     	if (CPU.Intel == "1200") {alert(IntelCPU.Socket1200)}
 		else if (CPU.Intel == "1151") {alert(IntelCPU.Socket1151)}
 		else if (CPU.Intel == "2066") {alert(IntelCPU.Socket2066)}
 }
-if(hardware.CPU == "Amd") {
-	CPU.Amd = prompt(CPU.Amd);
-    	if (CPU.Amd == "TR4") {alert(AMDCPU.TR4)}
-		else if (CPU.Amd == "AM4") {alert(AMDCPU.AM4)}	
+if(hardware.CPU == "amd") {
+	CPU.Amd = prompt(CPU.Amd).toLowerCase();
+    	if (CPU.Amd == "tr4") {alert(AMDCPU.TR4)}
+		else if (CPU.Amd == "am4") {alert(AMDCPU.AM4)}	
 }
 </script>
 </body>
