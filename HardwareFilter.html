@@ -5,8 +5,54 @@
 	<title>Фільтрація ПК</title>
 </head>
 <body>
-<script>
-let hardware = {
+	<script>
+	let CPU = [ /* многоуровневый маcсив */
+		[Intel, AMD] /* производитель */
+		
+		[ /* сокет */
+			['1200','1151','2066'] /* Intel */
+			[TR4,AM4] /* AMD */
+		] /* сокет */
+		
+		[ /* поколение */
+			[i3,i5,i7,i9] /* Intel */
+			['Ryzen 3','Ryzen 5','Ryzen 7','Ryzen 9'] /* AMD */
+		] /* поколение */
+		
+		[ /* модель */
+			[
+				[let i3_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i3_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i3_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				] /* i3 */
+				[let i5_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i5_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i5_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				] /* i5 */
+				[let i7_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i7_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i7_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				] /* i7 */
+				[let i9_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i9_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				 let i9_10100F_BOX = {name: ,core_name: ,socket: ,core: ,threads: ,frequency: ,memoty_type: ,chanel_memory: ,lithography: ,max_temp: ,cache: ,TDP: ,type: ,index: ,}
+				] /* i9 */
+			] /* Intel */
+			[
+				[] /* r3 */
+				[] /* r5 */
+				[] /* r7 */
+				[] /* r9 */
+			] /* AMD */
+		] /* модель */
+	]
+
+
+
+
+
+
+/* let hardware = {
 CPU: "Intel/Amd"
 }
 let CPU = {
@@ -33,7 +79,7 @@ if(hardware.CPU == "amd") {
 	CPU.Amd = prompt(CPU.Amd).toLowerCase();
     	if (CPU.Amd == "tr4") {alert(AMDCPU.TR4)}
 		else if (CPU.Amd == "am4") {alert(AMDCPU.AM4)}	
-}
+} */
 </script>
 </body>
 </html>
