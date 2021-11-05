@@ -13,8 +13,8 @@ let i3 = [
 ]
 
 let i5 = [
+{name:'Intel Core i5-9600',core_name:'Coffee Lake Refresh',socket:'1151',core:'6',threads:'6',frequency:'3.7GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'9MB',TDP:'95W',type:'BOX',},
 {name:'Intel Core i5-10400',core_name:'Comet Lake',socket:'1200',core:'6',threads:'12',frequency:'2.9GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'12MB',TDP:'65W',type:'Trial',},
-{name:'ntel Core i5-9600',core_name:'Coffee Lake Refresh',socket:'1151',core:'6',threads:'6',frequency:'3.7GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'9MB',TDP:'95W',type:'BOX',},
 {name:'Intel Core i5-11600',core_name:'Rocket Lake',socket:'1200',core:'6',threads:'12',frequency:'2.8GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'12MB',TDP:'65W',type:'Trial',},
 ] 
 
@@ -51,6 +51,20 @@ let FX = [
 {name:'AMD FX-6300',core_name:'Vishera',socket:'AM3+',core:'6',threads:'6',frequency:'3.5GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8MB',TDP:'95W',type:'BOX',},
 ]
 
+function cpuinformationI5(information) {
+alert("Процессор " + i5[information].name + '\n' + 
+		"Ядро " + i5[information].core_name + '\n' +
+    "Количество ядер " + i5[information].core + '\n' +
+    "Количество потоков " + i5[information].threads + '\n' +
+    "Частота " + i5[information].frequency + '\n' +
+    "Тип памяти " + i5[information].memory_type + '\n' +
+    "Количество каналов " + i5[information].chanel_memory + '\n' +
+    "Литография " + i5[information].lithography + '\n' +
+    "Максимальная температура " + i5[information].max_temp + '\n' +
+    "Кэш " + i5[information].cache + '\n' +
+    "Энергопотребление " + i5[information].TDP + '\n' +
+    "Комплектация " + i5[information].type);
+}
 // массив я подтянул свой, он компактнее
 let hardware = { 
 CPU: "Intel/AMD",
@@ -72,14 +86,46 @@ if (CPU.Intel == "i3") {
     CPU.socket = prompt("Введите сокет процессора 1200/1151"); 
 	if (CPU.socket == 1200) { 
 		alert("Процессор " + i3[0].name + '\n' + 
-		"Ядро " + i3[0].core_name); 
+		"Ядро " + i3[0].core_name + '\n' +
+    "Количество ядер " + i3[0].core + '\n' +
+    "Количество потоков " + i3[0].threads + '\n' +
+    "Частота " + i3[0].frequency + '\n' +
+    "Тип памяти " + i3[0].memory_type + '\n' +
+    "Количество каналов " + i3[0].chanel_memory + '\n' +
+    "Литография " + i3[0].lithography + '\n' +
+    "Максимальная температура " + i3[0].max_temp + '\n' +
+    "Кэш " + i3[0].cache + '\n' +
+    "Энергопотребление " + i3[0].TDP + '\n' +
+    "Комплектация " + i3[0].type); 
 	} else if (CPU.socket == 1151) { 
 		alert('1.' + i3[1].name + '\n' + '2.' + i3[2].name); 
 		information = prompt("Для какого процессора хотите вывести информацию 1/2"); 
 	if (information = 1) { 
-		// делай пж такие же отсупы
+		alert("Процессор " + i3[1].name + '\n' + 
+		"Ядро " + i3[1].core_name + '\n' +
+    "Количество ядер " + i3[1].core + '\n' +
+    "Количество потоков " + i3[1].threads + '\n' +
+    "Частота " + i3[1].frequency + '\n' +
+    "Тип памяти " + i3[1].memory_type + '\n' +
+    "Количество каналов " + i3[1].chanel_memory + '\n' +
+    "Литография " + i3[1].lithography + '\n' +
+    "Максимальная температура " + i3[1].max_temp + '\n' +
+    "Кэш " + i3[1].cache + '\n' +
+    "Энергопотребление " + i3[1].TDP + '\n' +
+    "Комплектация " + i3[1].type);
 	} else if (information = 2) { 
-		// делай пж такие же отсупы
+			alert("Процессор " + i3[2].name + '\n' + 
+		"Ядро " + i3[2].core_name + '\n' +
+    "Количество ядер " + i3[2].core + '\n' +
+    "Количество потоков " + i3[2].threads + '\n' +
+    "Частота " + i3[2].frequency + '\n' +
+    "Тип памяти " + i3[2].memory_type + '\n' +
+    "Количество каналов " + i3[2].chanel_memory + '\n' +
+    "Литография " + i3[2].lithography + '\n' +
+    "Максимальная температура " + i3[2].max_temp + '\n' +
+    "Кэш " + i3[2].cache + '\n' +
+    "Энергопотребление " + i3[2].TDP + '\n' +
+    "Комплектация " + i3[2].type);
 } 
 } 
 } 
@@ -88,17 +134,16 @@ if (CPU.Intel == "i3") {
 } else if (CPU.Intel == "i5") { 
 socket = prompt("Введите сокет процессора - 1200 / 1151 "); 
 if (socket == 1200) { 
-    alert(i5[0].name); 
-    alert(i5[2].name); 
+alert('1.' + i5[1].name + '\n' + '2.' + i5[2].name);
     information = prompt("Для какого процессора хотите вывести информацию 1/2"); 
     if (information = 1) { 
-        
+
     }  
     else if (information = 2) { 
 
     } 
 } else if (socket == 1151) { 
-    alert(i5[1].name) 
+    alert(i5[0].name) 
 } 
 
 } else if (CPU.Intel == "i7") { 
