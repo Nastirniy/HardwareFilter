@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Фільтрація ПК</title>
+</head>
+<body>
+<script>
+let CPUs = {
+    Intel:[
+    {name:'Intel Core i3-10105',core_name:'Comet Lake',socket:'1200',core:'4',threads:'8',frequency:'3.7GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'6MB',TDP:'65W',type:'BOX',},
+    {name:'Intel Core i3-9100',core_name:'Coffee Lake Refresh',socket:'1151',core:'4',threads:'4',frequency:'3.6GHz',memory_type:'DDR4-2400MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'6MB',TDP:'65W',type:'BOX',},
+    {name:'Intel Core i3-8300',core_name:'Coffee Lake',socket:'1151',core:'4',threads:'4',frequency:'3.7GHz',memory_type:'DDR4-2400MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'8MB',TDP:'65W',type:'BOX',},
+
+    {name:'Intel Core i5-9600',core_name:'Coffee Lake Refresh',socket:'1151',core:'6',threads:'6',frequency:'3.7GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'9MB',TDP:'95W',type:'BOX',},
+    {name:'Intel Core i5-10400',core_name:'Comet Lake',socket:'1200',core:'6',threads:'12',frequency:'2.9GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'12MB',TDP:'65W',type:'Trial',},
+    {name:'Intel Core i5-11600',core_name:'Rocket Lake',socket:'1200',core:'6',threads:'12',frequency:'2.8GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'12MB',TDP:'65W',type:'Trial',},
+
+    {name:'Intel Core i7-11700',core_name:'Rocket Lake',socket:'1200',core:'8',threads:'16',frequency:'4.9Ghz',memory_type:'DDR4-3200',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'16MB',TDP:'65W',type:'BOX',},
+    {name:'Intel Core i7-7700K',core_name:'Kaby Lake',socket:'1151',core:'4',threads:'8',frequency:'4.5GHz',memory_type:'DDR3L/DDR4',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'8MB',TDP:'91W',type:'BOX',},
+    {name:'Intel Core i7-9700',core_name:'Coffee Lake Refresh',socket:'1151',core:'8',threads:'8',frequency:'4.7GHz',memory_type:'DDR4-2400MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'12MB',TDP:'65W',type:'Trial',},
+
+    {name:'Intel Core i9-11900K',core_name:'Rocket Lake',socket:'1200',core:'8',threads:'16',frequency:'3.5GHz',memory_type:'DDR4-3200/2933MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'16MB',TDP:'125W',type:'BOX',},
+    {name:'Intel Core i9-9900K',core_name:'Coffee Lake Refresh',socket:'1151',core:'8',threads:'16',frequency:'3.6GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'16MB',TDP:'95W',type:'BOX',},
+    {name:'Intel Core i9 10900K',core_name:'Comet Lake',socket:'1200',core:'10',threads:'20',frequency:'3.7GHz',memory_type:'DDR4-2933MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'20MB',TDP:'125W',type:'BOX',},
+],
+    AMD:[
+    {name:'AMD Ryzen 3 1200',core_name:'Zen',socket:'AM4',core:'4',threads:'4',frequency:'3.1GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'95C',cache:'8MB',TDP:'65W',type:'Trial',},
+    {name:'AMD Ryzen 3 3300X',core_name:'Zen2',socket:'AM4',core:'4',threads:'8',frequency:'3.8GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'12nm',max_temp:'95C',cache:'16MB',TDP:'65W',type:'BOX',},
+    
+    {name:'AMD Ryzen 5 PRO 2400GE',core_name:'Zen+',socket:'AM4',core:'4',threads:'8',frequency:'3.2GHz',memory_type:'DDR4-2933MHz',chanel_memory:'2',lithography:'14nm',max_temp:'95C',cache:'4MB',TDP:"35W",type:'Trial',},
+    {name:'AMD Ryzen 5 5600X',core_name:'Zen3',socket:'AM4',core:'6',threads:'12',frequency:'3.7GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'7nm',max_temp:'90C',cache:'32MB',TDP:'65',type:'BOX',},
+
+    {name:'AMD Ryzen 7 5800X',core_name:'Zen3',socket:'AM4',core:'8',threads:'16',frequency:'3.8GHz',memory_type:'DDR4-3800MHz',chanel_memory:'2',lithography:'7nm',max_temp:'95C',cache:'32MB',TDP:'105W',type:'BOX',},
+    {name:'AMD Ryzen 7 Pro 2700',core_name: 'Zen+',socket:'AM4',core:'8',threads:'16',frequency:'3.2GHz',memory_type:'DDR4-3200MHz',chanel_memory:'2',lithography:'12nm',max_temp:'95C',cache:'16MB',TDP:'65W',type:'Trial',},
+
+    {name:'AMD FX-4100',core_name:'Buldozer',socket:'AM3+',core:'4',threads:'4',frequency:'3.6GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8MB',TDP:'95W',type:'BOX',},
+    {name:'AMD FX-8100',core_name:'Zambezi',socket:'AM3+',core:'8',threads:'8',frequency:'2.8GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8Mb',TDP:'95W',type:'BOX',},
+    {name:'AMD FX-6300',core_name:'Vishera',socket:'AM3+',core:'6',threads:'6',frequency:'3.5GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8MB',TDP:'95W',type:'BOX',},
+],
+}
+
+let hardware = {
+temp:'', //переменная для временных данных
+CPU:'', //Intel/AMD
+}
+    
+let CPU = {
+temp: '', //переменная для временных данных
+ruler:'', //Intel Core,Ryzen,FX
+socket: '', //AM4/AM3+/1200/1151
+}
+
+let tempInformation = '0';
+
+function cpuinformation () {
+    if (CPU.ruler == 'i3') {
+        if (CPU.socket == '1200') {
+            CPU.temp = 'Intel'
+            tempInformation = '0'
+            output();
+        }
+    } else if (CPU.ruler == 'i5') {
+        if (CPU.socket == '1200') {
+            CPU.temp == 'Intel'
+        } else {
+            CPU.temp == 'Intel'
+        }
+    } else if (CPU.ruler == 'i7') {
+        if (CPU.socket == '1200') {
+            
+        } else {
+
+        }
+    } else if (CPU.ruler == 'i9') {
+        if (CPU.socket == '1200') {
+            
+        } else {
+
+        }
+    } else if (CPU.ruler == 'r3') {
+
+    } else if (CPU.ruler == 'r5') {
+
+    } else if (CPU.ruler == 'r7') {
+
+    } else if (CPU.ruler == 'FX') {
+
+    }
+
+}
+
+function output() {
+    if (CPU.temp == 'Intel') {
+        alert ("Процессор: " + CPUs.Intel[tempInformation].name + '\n' + 
+            "Ядро: " + CPUs.Intel[tempInformation].core_name + '\n' +
+            "Количество ядер: " + CPUs.Intel[tempInformation].core + '\n' +
+            "Количество потоков: " + CPUs.Intel[tempInformation].threads + '\n' +
+            "Частота: " + CPUs.Intel[tempInformation].frequency + '\n' +
+            "Кэш: " + CPUs.Intel[tempInformation].cache + '\n' +
+            "Тип памяти: " + CPUs.Intel[tempInformation].memory_type + '\n' +
+            "Количество каналов: " + CPUs.Intel[tempInformation].chanel_memory + '\n' +
+            "Литография: " + CPUs.Intel[tempInformation].lithography + '\n' +
+            "Максимальная температура: " + CPUs.Intel[tempInformation].max_temp + '\n' +
+            "Энергопотребление: " + CPUs.Intel[tempInformation].TDP + '\n' +
+            "Комплектация: " + CPUs.Intel[tempInformation].type);
+    } else {
+        alert ("Процессор: " + CPUs.AMD[tempInformation].name + '\n' + 
+            "Ядро: " + CPUs.AMD[tempInformation].core_name + '\n' +
+            "Количество ядер: " + CPUs.AMD[tempInformation].core + '\n' +
+            "Количество потоков: " + CPUs.AMD[tempInformation].threads + '\n' +
+            "Частота: " + CPUs.AMD[tempInformation].frequency + '\n' +
+            "Кэш: " + CPUs.AMD[tempInformation].cache + '\n' +
+            "Тип памяти: " + CPUs.AMD[tempInformation].memory_type + '\n' +
+            "Количество каналов: " + CPUs.AMD[tempInformation].chanel_memory + '\n' +
+            "Литография: " + CPUs.AMD[tempInformation].lithography + '\n' +
+            "Максимальная температура: " + CPUs.AMD[tempInformation].max_temp + '\n' +
+            "Энергопотреблени: " + CPUs.AMD[tempInformation].TDP + '\n' +
+            "Комплектация: " + CPUs.AMD[tempInformation].type);
+    }
+    
+choiceHardware();    
+}
+
+function choiceHardware () {
+hardware.temp = prompt('Выберете тип комплектующих' +'\n' + 'CPU' + '\n' + '...каталог еще дополняется').toLowerCase(); 
+if (hardware.temp == 'cpu') {
+    choicePlatform();
+} 
+alert ('Введено некоректное значание. Введие снова')
+choiceHardware();
+}
+
+function choicePlatform () {
+CPU.temp = prompt("Введите производителя процессора - Intel/AMD").toLowerCase(); 
+if (CPU.temp == 'intel') {
+    choiceRuler();
+} else if (CPU.temp == 'amd') { }
+alert ('Введено некоректное значание. Введие снова')
+choicePlatform();
+}
+
+function choiceRuler () {
+CPU.ruler = prompt('Введите ленейку процессора - i3/i5/i7/i9').toLowerCase(); 
+if (CPU.ruler == 'i3') { 
+    choiceSocket();
+} else if (CPU.ruler == 'i5') {
+    choiceSocket();
+} else if (CPU.ruler == 'i7') {
+    choiceSocket();
+} else if (CPU.ruler == 'i9') {
+    choiceSocket();
+}
+alert ('Введено некоректное значание. Введие снова')
+choiceRuler ();
+}
+
+function choiceSocket () {
+CPU.socket = prompt('Введите сокет процессора 1200/1151'); 
+if (CPU.socket == '1200') { 
+    if (CPU.ruler == 'i3') { 
+        choiceSocket();
+    } else if (CPU.ruler == 'i5') {
+        choiceSocket();
+    } else if (CPU.ruler == 'i7') {
+        choiceSocket();
+    } else if (CPU.ruler == 'i9') {
+        choiceSocket();
+    }
+} else if (CPU.socket == '1151') {
+    choiceSublevel();
+}
+alert ('Введено некоректное значание. Введие снова')
+choiceSocket();
+}
+
+function choiceSublevel () {
+tempInformation = prompt('Для какого процессора хотите вывести информацию 1/2' + '\n' + '1.' + i3[1].name + '\n' + '2.' + i3[2].name); 
+if (tempInformation == '1') { 
+    tempInformation =  '1'
+    cpuinformation();
+} else if (tempInformation == '2') {
+    tempInformation = '2' 
+    cpuinformation();
+}
+alert ('Введено некоректное значание. Введие снова')
+choiceSublevel();
+}
+
+choiceHardware();
+</script>
+</body>
+</html>
