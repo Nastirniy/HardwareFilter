@@ -6,6 +6,14 @@
 </head>
 <body>
 <script>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Фільтрація ПК</title>
+</head>
+<body>
+<script>
 let CPUs = {
     Intel:[
     {name:'Intel Core i3-10105',core_name:'Comet Lake',socket:'1200',core:'4',threads:'8',frequency:'3.7GHz',memory_type:'DDR4-2666MHz',chanel_memory:'2',lithography:'14nm',max_temp:'100C',cache:'6MB',TDP:'65W',type:'BOX',},
@@ -38,6 +46,14 @@ let CPUs = {
     {name:'AMD FX-8100',core_name:'Zambezi',socket:'AM3+',core:'8',threads:'8',frequency:'2.8GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8Mb',TDP:'95W',type:'BOX',},
     {name:'AMD FX-6300',core_name:'Vishera',socket:'AM3+',core:'6',threads:'6',frequency:'3.5GHz',memory_type:'DDR3',chanel_memory:'2',lithography:'32nm',max_temp:'70C',cache:'8MB',TDP:'95W',type:'BOX',},
 ],
+}
+
+let backFunc = {
+stepHardware:'',
+stepPlatform:'',
+stepRuler:'',
+stepSocket:'',
+stepSublevel:'',
 }
 
 let hardware = {
@@ -122,26 +138,68 @@ function output() {
 choiceHardware();    
 }
 
+function choiceBack () {
+if (backFunc.stepHardware == '1' || backFunc.stepPlatform == '0') {
+    choiceHardware ();
+} else if (backFunc.stepPlatform == '1' || backFunc.stepHardware == '1') {
+    choiceHardware ();
+} else if (backFunc.stepRuler == '1' || backFunc.stepPlatform =='1') {
+    backFunc.stepHardware = '1'
+    backFunc.stepPlatform = '1'
+    backFunc.stepRuler = '0'
+    backFunc.stepSocket = '0'
+    backFunc.stepSublevel = '0'
+    choicePlatform ();
+} else if (backFunc.stepSocket == '1' || backFunc.stepRuler == '1') {
+    backFunc.stepHardware = '0'
+    backFunc.stepPlatform = '1'
+    backFunc.stepRuler = '1'
+    backFunc.stepSocket = '0'
+    backFunc.stepSublevel = '0'
+    choiceRuler ();
+} else if (backFunc.stepSublevel == '1' || backFunc.stepSocket == '1') {
+    backFunc.stepHardware = '0'
+    backFunc.stepPlatform = '0'
+    backFunc.stepRuler = '1'
+    backFunc.stepSocket = '1'
+    backFunc.stepSublevel = '0'
+    choiceSocket ();
+}
+}
+
 function choiceHardware () {
-hardware.temp = prompt('Выберете тип комплектующих' +'\n' + 'CPU' + '\n' + '...каталог еще дополняется').toLowerCase(); 
+backFunc.stepHardware = '1'
+backFunc.stepPlatform = '0'
+backFunc.stepRuler = '0'
+backFunc.stepSocket = '0'
+backFunc.stepSublevel = '0'
+hardware.temp = prompt('Выберете тип комплектующих' +'\n' + 'CPU' + '\n' + '...каталог еще дополняется').toLowerCase();
 if (hardware.temp == 'cpu') {
     choicePlatform();
-} 
+} else if (hardware.temp == '-') {
+choiceBack ();
+}
 alert ('Введено некоректное значание. Введие снова')
 choiceHardware();
 }
 
 function choicePlatform () {
-CPU.temp = prompt("Введите производителя процессора - Intel/AMD").toLowerCase(); 
+CPU.temp = prompt("Введите производителя процессора - Intel/AMD").toLowerCase();
+backFunc.stepPlatform = '1'
 if (CPU.temp == 'intel') {
     choiceRuler();
-} else if (CPU.temp == 'amd') { }
+} else if (CPU.temp == 'amd') {
+} else if (CPU.temp == '-') {
+choiceBack ();
+}
 alert ('Введено некоректное значание. Введие снова')
 choicePlatform();
 }
 
 function choiceRuler () {
 CPU.ruler = prompt('Введите ленейку процессора - i3/i5/i7/i9').toLowerCase(); 
+backFunc.stepHardware = '0'
+backFunc.stepRuler = '1'   
 if (CPU.ruler == 'i3') { 
     choiceSocket();
 } else if (CPU.ruler == 'i5') {
@@ -150,31 +208,39 @@ if (CPU.ruler == 'i3') {
     choiceSocket();
 } else if (CPU.ruler == 'i9') {
     choiceSocket();
+} else if (CPU.ruler == '-') {
+choiceBack ();
 }
 alert ('Введено некоректное значание. Введие снова')
 choiceRuler ();
 }
 
 function choiceSocket () {
+choiceRuler.stepRuler ='0'
+backFunc.stepSocket = '1'
 CPU.socket = prompt('Введите сокет процессора 1200/1151'); 
 if (CPU.socket == '1200') { 
     if (CPU.ruler == 'i3') { 
-        choiceSocket();
+        choiceCPU();
     } else if (CPU.ruler == 'i5') {
-        choiceSocket();
+        choiceCPU();
     } else if (CPU.ruler == 'i7') {
-        choiceSocket();
+        choiceCPU();
     } else if (CPU.ruler == 'i9') {
-        choiceSocket();
+        choiceCPU();
     }
 } else if (CPU.socket == '1151') {
     choiceSublevel();
+} else if (CPU.socket == '-') {
+choiceBack ();
 }
 alert ('Введено некоректное значание. Введие снова')
 choiceSocket();
 }
 
 function choiceSublevel () {
+backFunc.stepSocket = '0'    
+backFunc.stepSocket = '1'
 tempInformation = prompt('Для какого процессора хотите вывести информацию 1/2' + '\n' + '1.' + i3[1].name + '\n' + '2.' + i3[2].name); 
 if (tempInformation == '1') { 
     tempInformation =  '1'
@@ -182,12 +248,21 @@ if (tempInformation == '1') {
 } else if (tempInformation == '2') {
     tempInformation = '2' 
     cpuinformation();
+} else if (tempInformation == '-') {
+choiceBack();
 }
 alert ('Введено некоректное значание. Введие снова')
 choiceSublevel();
 }
 
+function choiceCPU () {
+
+}
+
 choiceHardware();
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
